@@ -14,16 +14,22 @@ class MovieRow extends React.Component {
     try {
       let key = `b0ba7bdf`;
       const response = await fetch(
-        `http://www.omdbapi.com/?apikey=${key}&s=${this.props.query}`
+        `http://www.omdbapi.com/?apikey=${key}&s=` + this.props?.query
       );
-      const data = await response.json();
-      const array = data.Search;
-      this.setState({ movies: array });
-      console.log(this.state.movies);
+      const data = await response?.json();
+      const array = data?.Search;
+      this.setState({ movies: array }, () =>
+        console.log("carousel", this.state?.movies)
+      );
     } catch {}
   };
   componentDidMount = async () => {
     this.fetchData();
+  };
+  componentDidUpdate = async (prevProps, prevState) => {
+    if (prevProps.query !== this.props.query) {
+      console.log("main row", await this.fetchData());
+    }
   };
   render() {
     return (
@@ -62,7 +68,7 @@ class MovieRow extends React.Component {
         }}
         className="text-center"
       >
-        {this.state.movies.map((movie) => (
+        {this.state?.movies?.map((movie) => (
           <MovieCard key={movie.imdbID} movie={movie} />
         ))}
       </Splide>
