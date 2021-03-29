@@ -30,7 +30,7 @@ class NavBar extends React.Component {
                 type="text"
                 placeholder="Search"
                 className="mr-sm-2"
-                onChange={(e) => this.props.handleQuery(e.target.value)}
+                onKeyDown={(e) => this.props.handleQuery(e.target.value)}
               />
             </Form>
             <NavDropdown

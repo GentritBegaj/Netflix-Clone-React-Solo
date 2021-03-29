@@ -6,19 +6,23 @@ import MainBody from "./components/MainBody";
 
 class App extends React.Component {
   state = {
-    searchQuery: "",
+    searchField: "",
   };
 
   handleQuery = (query) => {
-    this.setState({ searchQuery: query });
-    console.log(query);
+    this.setState({ searchField: query }, () => {
+      console.log(query);
+      console.log("searchQuery", this.state.searchField);
+    });
+
+    console.log(this.state.searchField.length);
   };
 
   render() {
     return (
       <div>
         <NavBar handleQuery={this.handleQuery} />
-        <MainBody />
+        <MainBody searchQuery={this.state.searchField} />
       </div>
     );
   }

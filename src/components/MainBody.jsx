@@ -3,13 +3,17 @@ import MovieRow from "./MovieRow";
 import "./MainBody.css";
 
 class MainBody extends React.Component {
+  componentDidUpdate = (prevProps, prevstate) => {
+    if (prevProps.searchQuery !== this.props.searchQuery)
+      console.log("updaTED main body:", this.props.searchQuery);
+  };
   render() {
     return (
-      <>
-        <MovieRow query={"Spider%20Man"} />
-        <MovieRow query={"Harry%20Potter"} />
-        <MovieRow query={"Batman"} />
-      </>
+      <React.Fragment>
+        {this.props.searchQuery?.length > 0 ? (
+          <MovieRow query={this.props.searchQuery} />
+        ) : null}
+      </React.Fragment>
     );
   }
 }
