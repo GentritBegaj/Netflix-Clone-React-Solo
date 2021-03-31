@@ -3,6 +3,7 @@ import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import NavBar from "./components/NavBar";
 import MainBody from "./components/MainBody";
+import Footer from "./components/Footer";
 
 class App extends React.Component {
   state = {
@@ -10,19 +11,19 @@ class App extends React.Component {
   };
 
   handleQuery = (query) => {
-    this.setState({ searchField: query }, () => {
-      console.log(query);
-      console.log("searchQuery", this.state.searchField);
-    });
-
-    console.log(this.state.searchField.length);
+    this.setState({ searchField: query });
+    console.log(this.state.searchField);
   };
 
   render() {
     return (
       <div>
-        <NavBar handleQuery={this.handleQuery} />
+        <NavBar
+          searchField={this.state.searchField}
+          handleQuery={this.handleQuery}
+        />
         <MainBody searchQuery={this.state.searchField} />
+        <Footer />
       </div>
     );
   }

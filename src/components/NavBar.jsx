@@ -25,12 +25,21 @@ class NavBar extends React.Component {
               <Nav.Link className="text-light">Series</Nav.Link>
               <Nav.Link className="text-light">Films</Nav.Link>
             </Nav>
-            <Form inline>
+            <Form
+              onSubmit={(e) => {
+                e.preventDefault();
+              }}
+              inline
+            >
               <FormControl
                 type="text"
                 placeholder="Search"
                 className="mr-sm-2"
-                onKeyDown={(e) => this.props.handleQuery(e.target.value)}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter") {
+                    this.props.handleQuery(e.target.value);
+                  }
+                }}
               />
             </Form>
             <NavDropdown
