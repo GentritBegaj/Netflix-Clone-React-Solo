@@ -28,8 +28,8 @@ class CommentList extends React.Component {
   };
   render() {
     return (
-      <>
-        <ListGroup className="mt-5">
+      <div>
+        <ListGroup>
           {this.props.comments.map((comment) => (
             <div className="mb-3 d-flex">
               <ListGroup.Item>{comment.comment}</ListGroup.Item>
@@ -47,7 +47,7 @@ class CommentList extends React.Component {
             </div>
           ))}
         </ListGroup>
-      </>
+      </div>
     );
   }
 }

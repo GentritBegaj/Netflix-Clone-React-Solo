@@ -1,19 +1,14 @@
 import React from "react";
 import { Splide, SplideSlide } from "@splidejs/react-splide";
 import "@splidejs/splide/dist/css/themes/splide-skyblue.min.css";
-import MyModal from "./MyModal";
+// import MyModal from "./MyModal";
 import "./MovieRow.css";
+import { withRouter } from "react-router-dom";
+import { Spinner } from "react-bootstrap";
 
 class MovieRow extends React.Component {
   state = {
     movies: [],
-    isLoading: false,
-    modalShow: false,
-    selected: null,
-    image: null,
-    title: null,
-    year: null,
-    type: null,
   };
 
   fetchData = async () => {
@@ -84,41 +79,26 @@ class MovieRow extends React.Component {
           }}
           className="text-center"
         >
-          {this.state.movies.map((movie) => (
-            <SplideSlide className="mb-3" key={movie.imdbID}>
-              <img
-                class="images"
-                height="300"
-                width="250"
-                src={movie.Poster}
-                id={movie.imdbID}
-                alt={movie.imdbID}
-                onClick={() =>
-                  this.setState({
-                    modalShow: true,
-                    selected: movie.imdbID,
-                    image: movie.Poster,
-                    title: movie.Title,
-                    year: movie.Year,
-                    type: movie.Type,
-                  })
-                }
-              />
-            </SplideSlide>
-          ))}
-          <MyModal
-            type={this.state.type}
-            year={this.state.year}
-            title={this.state.title}
-            image={this.state.image}
-            selected={this.state.selected}
-            show={this.state.modalShow}
-            onHide={() => this.setState({ modalShow: false })}
-          />
+          {this.state.movies?.length > 0 &&
+            this.state.movies.map((movie) => (
+              <SplideSlide className="mb-3 images" key={movie.imdbID}>
+                <img
+                  height="300"
+                  width="250"
+                  src={movie.Poster}
+                  id={movie.imdbID}
+                  alt={movie.imdbID}
+                  onClick={() => {
+                    this.props.history.push("/details/" + movie.imdbID);
+                    console.log(movie.imdbID);
+                  }}
+                />
+              </SplideSlide>
+            ))}
         </Splide>
       </div>
     );
   }
 }
 
-export default MovieRow;
+export default withRouter(MovieRow);

@@ -1,20 +1,23 @@
 import React from "react";
 import "./Footer.css";
+import FacebookIcon from "@material-ui/icons/Facebook";
+import InstagramIcon from "@material-ui/icons/Instagram";
+import YouTubeIcon from "@material-ui/icons/YouTube";
 
 const Footer = () => {
   return (
     <footer>
       <div className="container-fluid mb-5">
         <div className="row ml-4">
-          <div className="col">
-            <div>
-              <i className="fab mr-3 fa-2x fa-facebook-square bg-transparent text-dark" />
+          <div className="col d-flex">
+            <div className="mr-2">
+              <FacebookIcon />
             </div>
-            <div>
-              <i className="fab mr-3 fa-2x fa-instagram-square bg-transparent text-dark" />
+            <div className="mr-2">
+              <InstagramIcon />
             </div>
-            <div>
-              <i className="fab mr-3 fa-2x fa-youtube bg-transparent text-dark" />
+            <div className="mr-2">
+              <YouTubeIcon />
             </div>
           </div>
         </div>

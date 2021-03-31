@@ -4,6 +4,9 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import NavBar from "./components/NavBar";
 import MainBody from "./components/MainBody";
 import Footer from "./components/Footer";
+import { BrowserRouter as Router, Route } from "react-router-dom";
+import MovieDetails from "./components/MovieDetails";
+import TVShows from "./components/TVShows";
 
 class App extends React.Component {
   state = {
@@ -18,11 +21,37 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <NavBar
-          searchField={this.state.searchField}
-          handleQuery={this.handleQuery}
-        />
-        <MainBody searchQuery={this.state.searchField} />
+        <Router>
+          <Route
+            path="/"
+            render={(routerProps) => (
+              <NavBar
+                searchField={this.state.searchField}
+                handleQuery={this.handleQuery}
+                {...routerProps}
+              />
+            )}
+          />
+
+          <Route
+            path="/"
+            exact
+            render={(routerProps) => (
+              <MainBody {...routerProps} searchQuery={this.state.searchField} />
+            )}
+          />
+          <Route
+            path="/series"
+            exact
+            render={(routerProps) => (
+              <TVShows {...routerProps} searchQuery={this.state.searchField} />
+            )}
+          />
+          <Route
+            path="/details/:id"
+            render={(routerProps) => <MovieDetails {...routerProps} />}
+          />
+        </Router>
         <Footer />
       </div>
     );

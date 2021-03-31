@@ -1,0 +1,28 @@
+header {
+  background: linear-gradient(to right, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.05)),
+    url("https://occ-0-2835-2774.1.nflxso.net/dnm/api/v6/6AYY37jfdO6hpXcMjf9Yu5cnmO0/AAAABZ69OBwRoR4HTLLWfIgOB_bg7N5kL3k7RdcVYDxAwLXm9s36AW9YMvtg3MfEAIivc1WnMlpBSHqwNV_hz7Pkl15djfUi.webp?r=e04");
+  width: 100%;
+  background-size: cover;
+  height: 87vh;
+  position: relative;
+  margin-bottom: 20px;
+}
+
+#header-text {
+  position: absolute;
+  bottom: 100px;
+  left: 60px;
+}
+
+#header-text button {
+  opacity: 0.8;
+}
+.play-button {
+  background-color: white !important;
+  width: 120px;
+  color: black !important;
+}
+
+#header-text button:hover {
+  opacity: 0.3;
+}

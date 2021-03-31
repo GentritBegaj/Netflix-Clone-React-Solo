@@ -51,9 +51,10 @@ class AddComment extends React.Component {
       <>
         <Form onSubmit={this.postComment} className="mt-5">
           <Form.Group>
+            <Form.Label className="text-light">Add a comment:</Form.Label>
             <Form.Control
               id="comment"
-              type="text"
+              as="textarea"
               placeholder="Add comment..."
               value={this.state.commentObj.comment}
               onChange={this.handleInput}
@@ -61,7 +62,7 @@ class AddComment extends React.Component {
           </Form.Group>
 
           <Form.Group>
-            <Form.Label>Rating</Form.Label>
+            <Form.Label className="text-light">Rating</Form.Label>
             <Form.Control
               id="rate"
               type="number"
