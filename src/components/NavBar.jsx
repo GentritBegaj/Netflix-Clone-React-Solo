@@ -9,7 +9,9 @@ class NavBar extends React.Component {
     return (
       <Navbar bg="transparent" expand="lg" className="bg-transparent pr-5">
         <Navbar.Brand className="bg-transparent">
-          <img src="logo.svg" alt="logo" width="160px" height="40px" />
+          <Link to="/">
+            <img src="logo.svg" alt="logo" width="160px" height="40px" />
+          </Link>
         </Navbar.Brand>
         <Navbar.Toggle
           aria-controls="basic-navbar-nav"
@@ -36,16 +38,6 @@ class NavBar extends React.Component {
               to="/series"
             >
               Series
-            </Link>
-            <Link
-              to="/registration"
-              className={
-                this.props.location.pathname === "/registration"
-                  ? "nav-link text-light"
-                  : "nav-link text-muted"
-              }
-            >
-              Registration
             </Link>
           </Nav>
           <Form
@@ -87,6 +79,16 @@ class NavBar extends React.Component {
             <NavDropdown.Item>Separated link</NavDropdown.Item>
           </NavDropdown>
         </Navbar.Collapse>
+        <Link
+          to="/registration"
+          className={
+            this.props.location.pathname === "/registration"
+              ? "d-none"
+              : "nav-link btn-md btn-danger text-light rounded"
+          }
+        >
+          Sign Up
+        </Link>
       </Navbar>
     );
   }

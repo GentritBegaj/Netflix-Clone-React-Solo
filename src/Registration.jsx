@@ -9,18 +9,21 @@ export default class Registration extends Component {
       lastName: "",
       email: "",
       password: "",
-      date: null,
+      date: "",
       address: "",
       city: "",
-      zip: null,
+      zip: 1,
     },
-    isValidated: false,
+    isPassValid: false,
   };
 
-  onSubmit = () => {
+  handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(this.state.userInfo);
     this.setState({
       users: [...this.state.users, this.state.userInfo],
     });
+    this.props.history.push("/");
   };
 
   handleChange = (e) => {
@@ -32,7 +35,18 @@ export default class Registration extends Component {
       },
     });
   };
+
+  validatePassword = (password) => {
+    let regEx = /^[A-Za-z]\w{7,14}$/;
+    if (password.match(regEx)) {
+      this.setState({ isPassValid: true });
+    } else {
+      this.setState({ isPassValid: false });
+    }
+    console.log(this.state.isPassValid);
+  };
   render() {
+    console.log(this.state.users);
     return (
       <div>
         <Container
@@ -46,7 +60,7 @@ export default class Registration extends Component {
           </Row>
           <Row>
             <Col xs={12}>
-              <Form>
+              <Form onSubmit={this.handleSubmit}>
                 <Form.Row>
                   <Form.Group as={Col} md="4">
                     <Form.Label className="text-light">First name</Form.Label>
@@ -56,6 +70,7 @@ export default class Registration extends Component {
                       type="text"
                       placeholder="First name"
                       value={this.state.userInfo.firstName}
+                      onChange={this.handleChange}
                     />
                     <Form.Text className="text-muted">
                       Minimum 2 characters
@@ -69,6 +84,7 @@ export default class Registration extends Component {
                       type="text"
                       placeholder="Last name"
                       value={this.state.userInfo.lastName}
+                      onChange={this.handleChange}
                     />
                     <Form.Text className="text-muted">
                       Minimum 3 characters
@@ -86,6 +102,7 @@ export default class Registration extends Component {
                       type="email"
                       placeholder="Enter email"
                       value={this.state.userInfo.email}
+                      onChange={this.handleChange}
                     />
                     <Form.Text className="text-muted">
                       We'll never share your email with anyone else.
@@ -101,6 +118,8 @@ export default class Registration extends Component {
                       type="password"
                       placeholder="Password"
                       value={this.state.userInfo.password}
+                      onKeyUp={(e) => this.validatePassword(e.target.value)}
+                      onChange={this.handleChange}
                     />
                     <Form.Text className="text-muted">
                       Minimum 8 chars, 1 digit, 1 letter
@@ -114,13 +133,13 @@ export default class Registration extends Component {
                     </Form.Label>
                     <Form.Control
                       id="date"
-                      value={this.state.userInfo.date}
                       required
                       type="date"
+                      value={this.state.userInfo.date}
+                      onChange={this.handleChange}
                     />
                   </Form.Group>
                 </Form.Row>
-
                 <Form.Row>
                   <Form.Group as={Col} md={6}>
                     <Form.Label className="text-light">Address</Form.Label>
@@ -130,6 +149,7 @@ export default class Registration extends Component {
                       placeholder="Enter Address..."
                       required
                       value={this.state.userInfo.address}
+                      onChange={this.handleChange}
                     />
                   </Form.Group>
                 </Form.Row>
@@ -142,6 +162,7 @@ export default class Registration extends Component {
                       placeholder="Enter City..."
                       required
                       value={this.state.userInfo.city}
+                      onChange={this.handleChange}
                     />
                   </Form.Group>
                 </Form.Row>
@@ -154,20 +175,20 @@ export default class Registration extends Component {
                       placeholder="Zip"
                       required
                       value={this.state.userInfo.zip}
+                      onChange={this.handleChange}
                     />
                     <Form.Text className="text-muted">
                       Please provide a valid zip.
                     </Form.Text>
                   </Form.Group>
                 </Form.Row>
-                <Button
-                  type="submit"
-                  className={
-                    this.state.isValidated ? "d-inline-block" : "d-none"
-                  }
-                >
-                  Submit
-                </Button>
+                {this.state.userInfo.firstName?.length > 1 &&
+                  this.state.userInfo.lastName?.length > 2 &&
+                  this.state.userInfo.date !== "" &&
+                  this.state.userInfo.zip?.length === 5 &&
+                  this.state.isPassValid && (
+                    <Button type="submit">Submit</Button>
+                  )}
               </Form>
               );
             </Col>

@@ -90,7 +90,7 @@ class MovieRow extends React.Component {
                   alt={movie.imdbID}
                   onClick={() => {
                     this.props.history.push("/details/" + movie.imdbID);
-                    console.log(movie.imdbID);
+                    // console.log(movie.imdbID);
                   }}
                 />
               </SplideSlide>
