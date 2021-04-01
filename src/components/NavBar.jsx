@@ -11,7 +11,10 @@ class NavBar extends React.Component {
         <Navbar.Brand className="bg-transparent">
           <img src="logo.svg" alt="logo" width="160px" height="40px" />
         </Navbar.Brand>
-        <Navbar.Toggle aria-controls="basic-navbar-nav" clas />
+        <Navbar.Toggle
+          aria-controls="basic-navbar-nav"
+          className="bg-light p-1"
+        />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="mr-auto">
             <Link
@@ -34,6 +37,16 @@ class NavBar extends React.Component {
             >
               Series
             </Link>
+            <Link
+              to="/registration"
+              className={
+                this.props.location.pathname === "/registration"
+                  ? "nav-link text-light"
+                  : "nav-link text-muted"
+              }
+            >
+              Registration
+            </Link>
           </Nav>
           <Form
             onSubmit={(e) => {
@@ -44,7 +57,7 @@ class NavBar extends React.Component {
             <FormControl
               type="text"
               placeholder="Search"
-              className="mr-sm-2"
+              className="mr-md-2"
               onKeyDown={(e) => {
                 if (e.key === "Enter") {
                   this.props.handleQuery(e.target.value);

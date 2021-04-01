@@ -7,6 +7,7 @@ import Footer from "./components/Footer";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import MovieDetails from "./components/MovieDetails";
 import TVShows from "./components/TVShows";
+import Registration from "./Registration";
 
 class App extends React.Component {
   state = {
@@ -50,6 +51,10 @@ class App extends React.Component {
           <Route
             path="/details/:id"
             render={(routerProps) => <MovieDetails {...routerProps} />}
+          />
+          <Route
+            path="/registration"
+            render={(routerProps) => <Registration {...routerProps} />}
           />
         </Router>
         <Footer />

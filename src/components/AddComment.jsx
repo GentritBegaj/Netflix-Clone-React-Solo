@@ -29,7 +29,7 @@ class AddComment extends React.Component {
       if (response.ok) {
         console.log("comment added");
         this.props.fetchComments(this.props.selected);
-      } else {
+
         console.log("Error happened");
       }
     } catch (error) {
@@ -61,7 +61,7 @@ class AddComment extends React.Component {
             />
           </Form.Group>
 
-          <Form.Group>
+          <Form.Group className="w-20">
             <Form.Label className="text-light">Rating</Form.Label>
             <Form.Control
               id="rate"

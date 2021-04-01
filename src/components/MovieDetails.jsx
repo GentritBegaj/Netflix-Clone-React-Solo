@@ -51,27 +51,40 @@ export default class MovieDetails extends Component {
     return (
       <>
         <Container
-          style={{ width: "70%", margin: "auto", textAlign: "center" }}
+          style={{ width: "70%", margin: "0 auto", textAlign: "center" }}
         >
-          <Row className="mt-5">
+          <Row className="my-5">
             <Col xs={6}>
-              <img src={this.state.movieData.Poster} alt="image1" />
+              <img
+                src={this.state.movieData.Poster}
+                width="100%"
+                style={{ maxHeight: "300px", objectFit: "contain" }}
+                alt="image1"
+              />
             </Col>
-            <Col xs={4}>
+            <Col xs={6}>
               <p className="text-light text-center">
                 {this.state.movieData.Plot}
               </p>
+              <div className="d-flex justify-content-between">
+                <p className="text-light text-center">
+                  {this.state.movieData.Type}
+                </p>
+                <p className="text-light text-center">
+                  {this.state.movieData.Year}
+                </p>
+              </div>
             </Col>
           </Row>
-          <Row className="mt-5 text-center">
-            <Col xs={12} md={6}>
+          <Row className="mt-5 justify-content-center">
+            <Col xs={12} md={5} className="mt-5">
               <CommentList
                 fetchComments={this.fetchComments}
                 selected={this.state.movieId}
                 comments={this.state.comments}
               />
             </Col>
-            <Col xs={12} md={6}>
+            <Col xs={12} md={5}>
               <AddComment
                 selected={this.state.movieId}
                 fetchComments={this.fetchComments}

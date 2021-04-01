@@ -43,7 +43,7 @@ class TVShowsRow extends React.Component {
   };
   render() {
     return (
-      <div className="mb-5">
+      <div>
         {this.state.movies ? (
           <Splide
             options={{
@@ -82,10 +82,10 @@ class TVShowsRow extends React.Component {
           >
             {this.state.movies?.length > 0 &&
               this.state.movies.map((movie) => (
-                <SplideSlide className="mb-3 images" key={movie.imdbID}>
+                <SplideSlide className="mt-5 images" key={movie.imdbID}>
                   <img
-                    height="300"
-                    width="250"
+                    height="250"
+                    width="200"
                     src={movie.Poster}
                     id={movie.imdbID}
                     alt={movie.imdbID}
